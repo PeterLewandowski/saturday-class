@@ -113,6 +113,7 @@ async function updateUserFullName(inputEmail, name) {
     console.log("Ahmed's doc: " + JSON.stringify(document.data()));
     // This is the document found
     const documentReference = document.ref
+  
     // 8. Update the document
     documentReference.update({'name': name})
 
@@ -127,5 +128,5 @@ async function updateUserFullName(inputEmail, name) {
   });
 }
 
-updateUserFullName('Ahmed@bekhit.com', 'Ahmed Bekhit')
+// updateUserFullName('Ahmed@bekhit.com', 'Ahmed Bekhit')
 
