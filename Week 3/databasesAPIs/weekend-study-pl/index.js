@@ -30,14 +30,19 @@ const usersCollection = db.collection('users')
 // can keep it outside of the function below if it may be reused later on
 
 async function readUserDocuments() {
-  
   // 5a. Read Documents
-  const snapshot = await usersCollection.get()
-  
+  const snapshot = await usersCollection.get();
+
+  // we need to create an empty array to put the data into for the GET request in the API
+  let allUsersDocuments = [];
+
   // 5b. Iterate through snapshot documents
   snapshot.forEach(function (document) {
-    console.log(document)
-  })
+    const documentObject = document.data();
+    allUsersDocuments.push(documentObject);
+  });
+
+  return allUsersDocuments;
 }
 
 // readUserDocuments()
@@ -47,7 +52,6 @@ async function readUserDocuments() {
  * reading documents from the following collections:
  * - my_shows
  * - content
- *  
  */
 
 
@@ -129,4 +133,14 @@ async function updateUserFullName(inputEmail, name) {
 }
 
 // updateUserFullName('Ahmed@bekhit.com', 'Ahmed Bekhit')
+
+// Create an export of the functions to be used in our API
+
+module.exports = {
+  updateUserFullName,
+  registerUser,
+  readUserDocuments,
+  readMyShowsDocuments,
+  readContentDocuments
+}
 
